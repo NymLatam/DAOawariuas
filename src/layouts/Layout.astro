@@ -1,0 +1,39 @@
+---
+import AppFooter from "../components/AppFooter.astro";
+import AppHeader from "../components/AppHeader.astro";
+---
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="generator" content={Astro.generator} />
+        <meta name="description" content="DAOariwas es un esfuerzo colectivo de resistencia ante el capitalismo de vigilancia." />
+        <title>DAOariwas</title>
+
+        <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet" />
+    </head>
+    <body class="bg-white dark:bg-gray-900">
+        <AppHeader />
+        <slot />
+        <AppFooter />
+        <div class="fixed inset-x-6 bottom-6 z-40 mx-auto w-max">
+            <a href="https://t.me/+HMOPOObcy3owN2Ex" target="_blank" class="flex gap-3 rounded-2xl border border-yellow-900/30 bg-gradient-to-br from-white/50 to-yellow-100 p-3 shadow-2xl shadow-yellow-900/50 backdrop-blur-xl dark:border-white/10 dark:from-gray-800 dark:to-black/70 dark:shadow-primary/50">
+                
+                <span class="text-sm font-semibold tracking-wide text-yellow-900 dark:text-white"> 🛰️ Telegram</span>
+            </a>
+        </div>
+    </body>
+</html>
+<style>
+    html {
+        font-family: Urbanist, sans-serif;
+        scroll-behavior: smooth;
+    }
+
+    body {
+        margin: 0;
+    }
+</style>
