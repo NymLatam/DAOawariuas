@@ -1,0 +1,210 @@
+---
+import Container from "./Container.astro"
+---
+
+<Container> 
+    <div class="pt-40 m-4">
+        <div class="max-w-3xl mx-auto p-6 bg-gray-900 rounded-lg shadow-lg text-white">
+            <h1 class="text-center text-3xl font-bold"> Montando un nodo de Nym </h1>
+<h2 class="text-2xl font-semibold mt-4">Requerimientos </h2>
+
+
+<li class="mt-4"> Vps con <code class="ml-4"> 2 Cores | 4gb Ram | ipv4 | ipv6 | Ubuntu 20.04 o superior</code></li></ul>
+<li class="mt-4">Wallet con 101 Tokens</li></ul>
+<li class="mt-4">Terminal bash  </li></ul>
+<li class="mt-4">Internet  </li></ul>
+
+<h2 class="text-2xl font-semibold mt-4">Paso 1 </h2>
+            <p class="text-withe mt-4" >Abrir la wallet </p>
+
+            <h2 class="text-2xl font-semibold mt-4">Paso 2 </h2>
+            <p class="text-withe mt-4" > Entrar al root del vps vía ssh
+<br> Para usuarios de windows recmendamos usar wsl, terminal de unix en windows </p>
+<p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+    <code> ssh root@ 192.168.0.x
+      </code>
+</p>
+            <h2 class="text-2xl font-semibold mt-4">Paso 3 </h2>
+            <p class="text-withe mt-4" >Descargar el binario en el vps del sitio de releases del <a href="" target="_blank" class="hover:text-orange-400">github de nym</a> </p>
+            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+                <code>wget -c https://github.com/nymtech/nym/releases/download/nym-binaries-v2023.5-rolo/nym-mixnode
+                  </code>
+            </p>
+            <h2 class="text-2xl font-semibold mt-4">Paso 4 </h2>
+            <p class="text-withe mt-4" >Darmos permisos de ejecucuón al binario </p>
+            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+                <code>chmod u+x nym-mixnode
+                  </code>
+            </p>
+
+
+
+            <h2 class="text-2xl font-semibold mt-4">Paso 5 </h2>
+            <p class="text-withe mt-4" >Verificar la versión del nym-mixnode </p>
+
+            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+                <code>./nym-mixnode --version
+                  </code>
+            </p>
+
+
+            
+
+
+
+            <h2 class="text-2xl font-semibold mt-4">Paso 6 </h2>
+            <p class="text-withe mt-4" >Creamos el archivo de informacion del servicio</p>
+
+            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+                <code>nano /etc/systemd/system/nym-mixnode.service
+                  </code>
+            </p>
+
+            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+                <p class="mt-4">Ingresamos Esta iinformación</p>
+                <pre>
+                    <code>
+        [Unit]
+        Description=Nym Mixnode (v1.1.34)
+        StartLimitInterval=350
+        StartLimitBurst=10
+                  
+        [Service]
+        User=root
+        LimitNOFILE=65536
+        ExecStart=/root/nym-mixnode run --id llankaq 
+        KillSignal=SIGINT
+        Restart=on-failure
+        RestartSec=30
+                  
+        [Install]
+        WantedBy=multi-user.target
+                    </code>
+                  </pre>
+                  
+            </p>
+           
+
+            
+            <h2 class="text-2xl font-semibold mt-4">Paso 7 </h2>
+            <p class="text-withe mt-4" >Creamos el demonio </p>
+            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+                <code>systemctl daemon-reload
+                  </code>
+            </p>
+
+
+
+            <h2 class="text-2xl font-semibold mt-4">Paso 8 </h2>
+            <p class="text-withe mt-4" >Iniciamos el nodo </p>
+            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+                <code> ./nym-mixnode init --id llankaq  --host 192.168.0.x
+                  </code>
+            </p>
+
+            <p class="text-withe mt-4" >Debes de obteneter el Ident Key y el Sphinx Key para ponerlos en la wallet y hacer el bonding</p>
+           
+            <p class="text-gray-600 pr-20 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        <pre>
+                <code>
+    Identity Key: DMkSeKp3Zq5nC7SH1fiwDQmS1LFdxq2oEr2ZPeCSxxGG
+    Sphinx Key: A6BFTQsuTWFuQhnY4k7d6ehGgPRfAa3cSEk3cTpbK6As
+    Host: 65.108.110.214 (bind address: 65.108.110.214)
+    Version: 1.1.17
+    Mix Port: 1789, Verloc port: 1790, Http Port: 8000
+                  </code>
+                </pre>
+            </p>
+
+
+            <h2 class="text-2xl font-semibold mt-4">Paso 9 </h2>
+            <p class="text-withe mt-4" >Hacer el bonding desde la wallet</p>
+            <p class="text-withe mt-4" >Depositamos los datos que nos dio en la terminal</p>
+            <img class="mt-4 justify-center" src="https://user-images.githubusercontent.com/17709296/235567658-975dacd4-738b-42fe-9f5d-d238985e72c4.png"  width="400">
+
+            <h2 class="text-2xl font-semibold mt-4">Paso 10 </h2>
+            <p class="text-withe mt-4" >Obtenemos la firma </p>
+            <img src="https://camo.githubusercontent.com/45f685c1b09b977e9dff2d4d02e4d7172d2bf4fc3e952ff7bbe8f3186776d897/68747470733a2f2f6e796d746563682e6e65742f646f63732f696d616765732f77616c6c65742d7369676e2e706e67" width="300">
+
+            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+                <code> ./nym-mixnode sign --id llankaq --contract-msg 5XrvVEMz.............
+                  </code>
+            </p>
+
+            <h2 class="text-2xl font-semibold mt-4">Paso 11 </h2>
+            <p class="text-withe mt-4" >Agregamos la otra firma en la wallet </p>
+
+            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+                <code>  >>> The base58-encoded signature is:
+                    2GbKcZVKFdpi3sR9xoJWzwPuGdj3bvd7yDtDYVoKfbTWdpjqAeU8KS5bSftD5giVLJC3gZiCg2kmEjNG5jkdjKUt
+                  </code>
+            </p>
+           
+
+            <h2 class="text-2xl font-semibold mt-4">Paso 12 </h2>
+            <p class="text-withe mt-4" >Descripción del grupo </p>
+            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+                <code>  ./nym-mixnode describe --id llankaq
+                  </code>
+            </p>
+
+
+            <h2 class="text-2xl font-semibold mt-4">Paso 13 </h2>
+            <p class="text-withe mt-4" >Configura tu firewall </p>
+
+            <pre>
+                <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+                    <code> 
+ # revisa si tienes instalado  ufw 
+ufw version
+                    </code>
+                    <code> 
+# si no está instalado, instalalo con
+sudo apt install ufw -y</code>
+                       <code>  
+# habilita ufw
+sudo ufw enable
+                    </code>
+
+                    <code> 
+# revisa el status del firewall
+sudo ufw status</code>
+                       
+                    
+                    
+                </p>
+            </pre>
+
+            <h2 class="text-2xl font-semibold mt-4">Paso 14 </h2>
+            <p class="text-withe mt-4" >Habilitar los puertos 1789, 1790 8000, 22, 80, 443</p>
+    <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+        <pre> 
+        <code> 
+    sudo ufw allow 1789,1790,8000,22,80,443/tcp</code>
+    <code>
+    # revisa el status del firewall
+    sudo ufw status    
+    </code>
+        
+</pre>  
+</p>
+
+<h2 class="text-2xl font-semibold mt-4">Paso 1 </h2>
+<p class="text-withe mt-4" >Revisa tu nodo en el <a href="" target="_blank">Explorer</a></p>
+
+</div>
+</div>
+</Container>
