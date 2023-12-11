@@ -8,7 +8,7 @@ const res = await fetch('http://nym.criptochingaderas.com/list/');
 const data2 = await res.json();
 ---
 <div>
-</Container> 
+<Container> 
 
   <div class="pt-40  " >
     {data2.map((data) => (
@@ -16,8 +16,9 @@ const data2 = await res.json();
       
         
           <h1 class="text-xl pb-4 bg-gray-800 px-4 py-2 font-bold text-center">
-            {data.Name} <br /> {data.Description} 
+            {data.Name} <br /> 
           </h1>
+          <p class="text-center pt-4"> {data.Description}  </p>
           <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
             <div >
               <h3 class="text-xl">Mix ID: </h3>
@@ -52,3 +53,4 @@ const data2 = await res.json();
   </div>
 </Container>
 </div>  
+
