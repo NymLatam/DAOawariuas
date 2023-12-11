@@ -47,49 +47,51 @@ interface Nodo1Props {
   };
   profit_margin_percent: string;
 }
-const res = await fetch('https://explorer.nymtech.net/api/v1/mix-node/915');
-const data = await res.json();
-
-
+const res = await fetch('http://nym.criptochingaderas.com/list/');
+const data2 = await res.json();
 ---
 <div>
 </Container>
 
-<div class="pt-40  " >
+  <div class="pt-40  " >
+   
     <div class="shadow-lg rounded-lg overflow-hidden text-purple-300 bg-gray-900 mt-8 mr-4">
-<h1 class="text-xl pb-4 bg-gray-800 px-4 py-2 font-bold text-center">
-  Nodo Cypherplatxs 🇦🇷 ..
-</h1>
-<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
-  <div >
-    <h3 class="text-xl">Mix ID: </h3>
-    <p class="">915</p>{" "}
+      
+        {data2.map((data) => (
+          <h1 class="text-xl pb-4 bg-gray-800 px-4 py-2 font-bold text-center">
+        {data.Name} <br /> {data.Description} 
+      </h1>
+      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
+        <div >
+          <h3 class="text-xl">Mix ID: </h3>
+          <p class="">{data.Id}</p>
+        </div>
+        <div>
+          <h3 class="text-xl">Host: </h3>
+          <p class=""> {data.IP}</p>
+        </div>
+        <div>
+          <h3 class="text-xl">Identity Key: </h3>
+          <p class=""> {data.IdentityKey}</p>
+        </div>
+        <div>
+          <h3 class="text-xl">Country: </h3>
+          <p class=""> {data.Location}</p>
+        </div>
+        <div>
+          <h3 class="text-xl">Owner:</h3>
+          <p class=""> {data.Owner}</p>
+        </div>
+        <div>
+          <h3 class="text-xl">Monthly Earnings:</h3>
+          <p class=""> {data.MonthlyEarnings} NYM</p>
+        </div>
+      </div>
+          
+        ))}
+      
+      
+    </div>
   </div>
-  <div>
-    <h3 class="text-xl">Host: </h3>{" "}
-    <p class=""> {data.mix_node.host}</p>{" "}
-  </div>
-
-  <div>
-    {" "}
-    <h3 class="text-xl">Version: </h3>{" "}
-    <p class=""> {data.mix_node.version}</p>
-  </div>
-  <div>
-    <h3 class="text-xl">Country: </h3>{" "}
-    <p class=""> {data.location.country_name}</p>{" "}
-  </div>
-  <div>
-    <h3 class="text-xl">Status:</h3>{" "}
-    <p class=""> {data.status}</p>
-  </div>
-  <a href="https://mixnet.explorers.guru/mixnode/4CXwTxgoDoeUcrX4HYH9cFTegRNUTCij9eLugaymiyGf"  target="_blank" class="bg-gray-800 hover:bg-purple-300 text-white font-bold py-4 px-4 rounded">
-Ver en Explorer
-</a>
-
-</div>
-</div>
-
-</div>
 </Container>
 </div>  
