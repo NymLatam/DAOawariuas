@@ -4,94 +4,51 @@ import React, { useEffect, useState } from "react";
 import axios from "@astrojs/react";
 import Container from '../components/Container.astro';
 
-interface Nodo1Props {
-  mixId: number;
-  location: {
-    two_letter_iso_country_code: string;
-    three_letter_iso_country_code: string;
-    country_name: string;
-  };
-  status: string;
-  pledge_amount: {
-    denom: string;
-    amount: string;
-  };
-  total_delegation: {
-    denom: string;
-    amount: string;
-  };
-  owner: string;
-  layer: number;
-  mix_node: {
-    host: string;
-    mix_port: number;
-    verloc_port: number;
-    http_api_port: number;
-    sphinx_key: string;
-    identity_key: string;
-    version: string;
-  };
-  stake_saturation: number;
-  uncapped_saturation: number;
-  avg_uptime: number;
-  node_performance: {
-    most_recent: string;
-    last_hour: string;
-    last_24h: string;
-  };
-  estimated_operator_apy: number;
-  estimated_delegators_apy: number;
-  operating_cost: {
-    denom: string;
-    amount: string;
-  };
-  profit_margin_percent: string;
-}
 const res = await fetch('http://nym.criptochingaderas.com/list/');
 const data2 = await res.json();
 ---
 <div>
-</Container>
+</Container> 
 
   <div class="pt-40  " >
-   
+    {data2.map((data) => (
     <div class="shadow-lg rounded-lg overflow-hidden text-purple-300 bg-gray-900 mt-8 mr-4">
       
-        {data2.map((data) => (
+        
           <h1 class="text-xl pb-4 bg-gray-800 px-4 py-2 font-bold text-center">
-        {data.Name} <br /> {data.Description} 
-      </h1>
-      <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
-        <div >
-          <h3 class="text-xl">Mix ID: </h3>
-          <p class="">{data.Id}</p>
-        </div>
-        <div>
-          <h3 class="text-xl">Host: </h3>
-          <p class=""> {data.IP}</p>
-        </div>
-        <div>
-          <h3 class="text-xl">Identity Key: </h3>
-          <p class=""> {data.IdentityKey}</p>
-        </div>
-        <div>
-          <h3 class="text-xl">Country: </h3>
-          <p class=""> {data.Location}</p>
-        </div>
-        <div>
-          <h3 class="text-xl">Owner:</h3>
-          <p class=""> {data.Owner}</p>
-        </div>
-        <div>
-          <h3 class="text-xl">Monthly Earnings:</h3>
-          <p class=""> {data.MonthlyEarnings} NYM</p>
-        </div>
-      </div>
-          
-        ))}
+            {data.Name} <br /> {data.Description} 
+          </h1>
+          <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 p-4">
+            <div >
+              <h3 class="text-xl">Mix ID: </h3>
+              <p class="">{data.Id}</p>
+            </div>
+            <div>
+              <h3 class="text-xl">Host: </h3>
+              <p class=""> {data.IP}</p>
+            </div>
+            <div>
+              <h3 class="text-xl">Identity Key: </h3>
+              <p class=""> {data.IdentityKey}</p>
+            </div>
+            <div>
+              <h3 class="text-xl">Country: </h3>
+              <p class=""> {data.Location}</p>
+            </div>
+            <div>
+              <h3 class="text-xl">Owner:</h3>
+              <p class=""> {data.Owner}</p>
+            </div>
+            <div>
+              <h3 class="text-xl">Monthly Earnings:</h3>
+              <p class=""> {data.MonthlyEarnings} NYM</p>
+            </div>
+          </div>
+       
       
       
     </div>
+    ))}
   </div>
 </Container>
 </div>  
