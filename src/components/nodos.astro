@@ -4,14 +4,26 @@ import React, { useEffect, useState } from "react";
 import axios from "@astrojs/react";
 import Container from '../components/Container.astro';
 
-const res = await fetch('http://nym.criptochingaderas.com/list/');
+// Este fragmento de código realiza una solicitud HTTP GET a la URL proporcionada
+// y luego convierte la respuesta en formato JSON.
+// La cabecera 'Cache-Control' está configurada para almacenar en caché la respuesta
+// durante 3600 segundos y, si la respuesta está obsoleta, la revalida.
+const res = await fetch('http://nym.criptochingaderas.com/list/', {
+  headers: {
+    'Cache-Control': 's-maxage=3600, stale-while-revalidate'
+  }
+});
+// La respuesta de la solicitud se convierte en un objeto JSON
+// y se almacena en la variable 'data2'.
 const data2 = await res.json();
 ---
 <div>
 <Container> 
 
   <div class="pt-40  " >
-    {data2.map((data) => (
+
+    <div class="text-center text-white text-3xl font-bold"> Nodos Daoariwas</div>
+    {data2.map((data: { Name: unknown; Description: unknown; Id: unknown; IP: unknown; IdentityKey: unknown; Location: unknown; Owner: unknown; MonthlyEarnings: unknown; }) => (
     <div class="shadow-lg rounded-lg overflow-hidden text-purple-300 bg-gray-900 mt-8 mr-4">
       
         
@@ -53,4 +65,5 @@ const data2 = await res.json();
   </div>
 </Container>
 </div>  
+
 
