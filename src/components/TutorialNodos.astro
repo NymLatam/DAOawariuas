@@ -9,7 +9,7 @@ import Container from "./Container.astro"
 <h2 class="text-2xl font-semibold mt-4">Requerimientos </h2>
 
 
-<li class="mt-4"> Vps con <code class="ml-4"> 2 Cores | 4gb Ram | ipv4 | ipv6 | Ubuntu 20.04 o superior</code></li></ul>
+<li class="mt-4"> Vps con <code class="ml-4"> 4 Cores | 4gb Ram | ipv4 | ipv6 | 1GBS de tranferencia | Ubuntu 20.04 o superior</code></li></ul>
 <li class="mt-4">Wallet con 101 Tokens</li></ul>
 <li class="mt-4">Terminal bash  </li></ul>
 <li class="mt-4">Internet  </li></ul>
@@ -29,84 +29,34 @@ import Container from "./Container.astro"
             <p class="text-withe mt-4" >Descargar el binario en el vps del sitio de releases del <a href="https://github.com/nymtech/nym/releases" target="_blank" class="hover:text-orange-400">github de nym</a> </p>
             <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
         
-                <code>wget -c https://github.com/nymtech/nym/releases/download/nym-binaries-v2023.5-rolo/nym-mixnode
+                <code>wget -c https://github.com/nymtech/nym/releases/download/nym-binaries-v2024.5-ragusa/nym-node
                   </code>
             </p>
             <h2 class="text-2xl font-semibold mt-4">Paso 4 </h2>
             <p class="text-withe mt-4" >Darmos permisos de ejecucuón al binario </p>
             <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
         
-                <code>chmod u+x nym-mixnode
+                <code>chmod u+x nym-node
                   </code>
             </p>
 
 
 
             <h2 class="text-2xl font-semibold mt-4">Paso 5 </h2>
-            <p class="text-withe mt-4" >Verificar la versión del nym-mixnode </p>
+            <p class="text-withe mt-4" >Verificar la versión del nym-node </p>
 
             <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
         
-                <code>./nym-mixnode --version
+                <code>./nym-node --version
                   </code>
             </p>
-
-
-            
-
 
 
             <h2 class="text-2xl font-semibold mt-4">Paso 6 </h2>
-            <p class="text-withe mt-4" >Creamos el archivo de informacion del servicio</p>
-
-            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        
-                <code>nano /etc/systemd/system/nym-mixnode.service
-                  </code>
-            </p>
-
-            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        
-                <p class="mt-4">Ingresamos Esta iinformación</p>
-                <pre>
-                    <code>
-[Unit]
-Description=Nym Mixnode (v1.1.34)
-StartLimitInterval=350
-StartLimitBurst=10
-                  
-[Service]
-User=root
-LimitNOFILE=65536
-ExecStart=/root/nym-mixnode run --id llankaq 
-KillSignal=SIGINT
-Restart=on-failure
-RestartSec=30
-                  
-[Install]
-WantedBy=multi-user.target
-                    </code>
-                  </pre>
-                  
-            </p>
-           
-
-            
-            <h2 class="text-2xl font-semibold mt-4">Paso 7 </h2>
-            <p class="text-withe mt-4" >Creamos el demonio </p>
-            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        
-                <code>systemctl daemon-reload
-                  </code>
-            </p>
-
-
-
-            <h2 class="text-2xl font-semibold mt-4">Paso 8 </h2>
             <p class="text-withe mt-4" >Iniciamos el nodo </p>
             <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
         
-                <code> ./nym-mixnode init --id llankaq  --host 192.168.0.x
+                <code> ./nym-node run --id testnode --init-only --mode mixnode --verloc-bind-address 0.0.0.0:1790 --public-ips "$(curl -4 https://ifconfig.me)"
                   </code>
             </p>
 
@@ -125,18 +75,76 @@ Mix Port: 1789, Verloc port: 1790, Http Port: 8000
             </p>
 
 
+
+            <h2 class="text-2xl font-semibold mt-4">Paso 7 </h2>
+            <p class="text-withe mt-4" >Creamos el archivo de informacion del servicio</p>
+
+            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+                <code>nano /etc/systemd/system/nym-node.service
+                  </code>
+            </p>
+
+            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+                <p class="mt-4">Ingresamos Esta iinformación</p>
+                <pre>
+                    <code>
+                      [Service]
+                      User=root
+                      LimitNOFILE=65536
+                      ExecStart=/root/nym-node run --mode mixnode --id testnode --deny-init
+                      KillSignal=SIGINT
+                      Restart=on-failure
+                      RestartSec=30
+                      
+                      [Install]
+                      WantedBy=multi-user.target
+                    </code>
+                  </pre>
+                  
+            </p>
+           
+
+            
+            <h2 class="text-2xl font-semibold mt-4">Paso 8 </h2>
+            <p class="text-withe mt-4" >Habilitar el servicio y lo iniciamos </p>
+            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+                <code>systemctl enable nym-node.service
+                  </code>
+                </p>
+                <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+                  <code>systemctl daemon-reload
+                  </cod
+            </p>
+
+
+            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400">    <code>service nym-node start
+            </code></p>
+
+
+     
             <h2 class="text-2xl font-semibold mt-4">Paso 9 </h2>
+            <p class="text-withe mt-4" >Revisamos la informacion para el bonding </p>
+            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        
+                <code>./nym-node bonding-information --id testnode
+                  </code>
+                
+
+            </p>
+            <h2 class="text-2xl font-semibold mt-4">Paso 10</h2>
             <p class="text-withe mt-4" >Hacer el bonding desde la wallet</p>
             <p class="text-withe mt-4" >Depositamos los datos que nos dio en la terminal</p>
             <img class="mt-4 justify-center" src="https://user-images.githubusercontent.com/17709296/235567658-975dacd4-738b-42fe-9f5d-d238985e72c4.png"  width="400">
 
             <h2 class="text-2xl font-semibold mt-4">Paso 10 </h2>
             <p class="text-withe mt-4" >Obtenemos la firma </p>
-            <img src="https://camo.githubusercontent.com/45f685c1b09b977e9dff2d4d02e4d7172d2bf4fc3e952ff7bbe8f3186776d897/68747470733a2f2f6e796d746563682e6e65742f646f63732f696d616765732f77616c6c65742d7369676e2e706e67" width="300">
-
+            
             <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
         
-                <code> ./nym-mixnode sign --id llankaq --contract-msg 5XrvVEMz.............
+                <code> ./nym-node sign --id testnode --contract-msg.............
                   </code>
             </p>
 
@@ -150,15 +158,6 @@ Mix Port: 1789, Verloc port: 1790, Http Port: 8000
                   </code>
             </p>
            
-
-            <h2 class="text-2xl font-semibold mt-4">Paso 12 </h2>
-            <p class="text-withe mt-4" >Descripción del grupo </p>
-            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        
-                <code>  ./nym-mixnode describe --id llankaq
-                  </code>
-            </p>
-
 
             <h2 class="text-2xl font-semibold mt-4">Paso 13 </h2>
             <p class="text-withe mt-4" >Configura tu firewall </p>
@@ -193,7 +192,10 @@ sudo ufw status</code>
         
         <pre> 
         <code> 
-ufw allow 1789,1790,8000,22,80,443/tcp</code>
+          ufw allow 1789
+          ufw allow 1790
+          ufw allow 22,443,1789,1790,8080/tcp
+          ufw allow 8080</code>
     <code>
 # revisa el status del firewall
 ufw status    
