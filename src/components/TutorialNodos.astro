@@ -90,16 +90,21 @@ Mix Port: 1789, Verloc port: 1790, Http Port: 8000
                 <p class="mt-4">Ingresamos Esta iinformación</p>
                 <pre>
                     <code>
-                      [Service]
-                      User=root
-                      LimitNOFILE=65536
-                      ExecStart=/root/nym-node run --mode mixnode --id testnode --deny-init
-                      KillSignal=SIGINT
-                      Restart=on-failure
-                      RestartSec=30
+[Unit]
+Description=Nym Node
+StartLimitInterval=350
+StartLimitBurst=10
                       
-                      [Install]
-                      WantedBy=multi-user.target
+[Service]
+User=root
+LimitNOFILE=65536
+ExecStart=/root/nym-node run --mode mixnode --id testnode --deny-init
+KillSignal=SIGINT
+Restart=on-failure
+RestartSec=30
+                      
+[Install]
+WantedBy=multi-user.target
                     </code>
                   </pre>
                   
@@ -204,18 +209,8 @@ ufw status
 </pre>  
 </p>
 
-<h2 class="text-2xl font-semibold mt-4">Paso 15 </h2>
-
-<p class="text-withe mt-4" >Reinicia el servicio </p>
-
-
-<p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        
-  <code> service nym-mixnode restart
-                </code>
-          </p>
           
-          <p class="text-withe mt-4" >BUsca tu nodo en el  <a class=" hover:bg-primary " href="https://nym.explorers.guru/" target="_blank">Explorer</a> usando tu Identy Key </p>
+          <p class="text-withe mt-4" >BUsca tu nodo en el  <span><a class=" hover:bg-primary " href="https://nym.explorers.guru/" target="_blank">Explorer</a></span> usando tu Identy Key </p>
          
 
 <h1 class="text-3xl mt-8 text-center"> Felicidades 🎉🎉</h1>
