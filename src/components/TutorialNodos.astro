@@ -21,9 +21,10 @@ import Container from "./Container.astro"
             <p class="text-withe mt-4" > Entrar al root del vps vía ssh
 <br> Para usuarios de windows recmendamos usar wsl, terminal de unix en windows </p>
 <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        
+        <pre>
     <code> ssh root@192.168.0.x
       </code>
+    </pre>
 </p>
             <h2 class="text-2xl font-semibold mt-4">Paso 3 </h2>
             <p class="text-withe mt-4" >Descargar el binario en el vps del sitio de releases del <a href="https://github.com/nymtech/nym/releases" target="_blank" class="hover:text-orange-400">github de nym</a> </p>
@@ -75,7 +76,7 @@ Mix Port: 1789, Verloc port: 1790, Http Port: 8000
             </p>
 
 
-
+<div>
             <h2 class="text-2xl font-semibold mt-4">Paso 7 </h2>
             <p class="text-withe mt-4" >Creamos el archivo de informacion del servicio</p>
 
@@ -110,7 +111,7 @@ WantedBy=multi-user.target
                   
             </p>
            
-
+          </div>
             
             <h2 class="text-2xl font-semibold mt-4">Paso 8 </h2>
             <p class="text-withe mt-4" >Habilitar el servicio y lo iniciamos </p>
@@ -149,9 +150,10 @@ WantedBy=multi-user.target
             
             <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
         
+              <pre>
                 <code> ./nym-node sign --id testnode --contract-msg.............
                   </code>
-            </p>
+            </p></pre>
 
             <h2 class="text-2xl font-semibold mt-4">Paso 11 </h2>
             <p class="text-withe mt-4" >Agregamos la otra firma en la wallet </p>
@@ -197,29 +199,87 @@ sudo ufw status</code>
         
         <pre> 
         <code> 
-          ufw allow 1789
-          ufw allow 1790
-          ufw allow 22,443,1789,1790,8080/tcp
-          ufw allow 8080</code>
-    <code>
-# revisa el status del firewall
+ufw allow 1789
+ufw allow 1790
+ufw allow 22,443,1789,1790,8080/tcp
+ufw allow 8080
+  #Revisa tu Firewal
 ufw status    
-    </code>
+        </code>
         
 </pre>  
 </p>
 
           
-          <p class="text-withe mt-4" >BUsca tu nodo en el  <span><a class=" hover:bg-primary " href="https://nym.explorers.guru/" target="_blank">Explorer</a></span> usando tu Identy Key </p>
+          <p class="text-withe mt-4" >Busca tu nodo en el  <span><a class=" hover:bg-primary " href="https://nym.explorers.guru/" target="_blank">Explorer</a></span> usando tu Identy Key </p>
          
 
 <h1 class="text-3xl mt-8 text-center"> Felicidades 🎉🎉</h1>
-<div class=" "> 
+<div class=""> 
   <h1 class="text-white text-2xl font-semibold mb-10 mt-8">Vídeo</h1>
   <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/AUCEetZ-qdY?si=R4u6horAPIdOvabV" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
 </div>
 </div>
 
 
+
+
 </div>
 </Container>
+
+
+<script>
+  let copyButtonLabel = "🍞";
+  let codeBlocks = Array.from(document.querySelectorAll("pre"));
+
+  for (let codeBlock of codeBlocks) {
+    let wrapper = document.createElement("div");
+    wrapper.style.position = "relative";
+  
+ 
+    let copyButton = document.createElement("button");
+    copyButton.className = "copy-code";
+    copyButton.innerHTML = copyButtonLabel;
+
+    codeBlock.setAttribute("tabindex", "0");
+    codeBlock.appendChild(copyButton);
+    // wrap codebock with relative parent element
+    codeBlock.parentNode.insertBefore(wrapper, codeBlock);
+    wrapper.appendChild(codeBlock);
+
+    copyButton.addEventListener("click", async () => {
+      await copyCode(codeBlock, copyButton);
+    });
+  }
+
+  async function copyCode(block, button) {
+    let code = block.querySelector("code");
+    let text = code.innerText;
+
+    await navigator.clipboard.writeText(text);
+
+    // visual feedback that task is completed
+    button.innerText = "Codigo copiado";
+
+    setTimeout(() => {
+      button.innerText = copyButtonLabel;
+    }, 700);
+  }
+</script>
+
+<style>
+  .copy-code {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #3730a3;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.copy-code:hover {
+  background-color: #312e81;
+}
+
+</style>
