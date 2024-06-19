@@ -13,47 +13,40 @@ import Container from "./Container.astro"
 <li class="mt-4">Wallet con 101 Tokens</li></ul>
 <li class="mt-4">Terminal bash  </li></ul>
 <li class="mt-4">Internet  </li></ul>
-</div>
+
 
 <h2 class="text-2xl font-semibold mt-4">Paso 1 </h2>
             <p class="text-withe mt-4" >Abrir la wallet </p>
 
             <h2 class="text-2xl font-semibold mt-4">Paso 2 </h2>
             <p class="text-withe mt-4" > Entrar al root del vps vía ssh
-<br> Para usuarios de windows recmendamos usar wsl, terminal de unix en windows </p>
+<br>
+<br> 
+<i>Para usuarios de windows recmendamos usar wsl, terminal de unix en windows </i> </p>
+
 <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        <pre>
-    <code> ssh root@192.168.0.x
-      </code>
-    </pre>
+        <pre><code> ssh root@192.168.0.x</code> </pre>
 </p>
             <h2 class="text-2xl font-semibold mt-4">Paso 3 </h2>
             <p class="text-withe mt-4" >Descargar el binario en el vps del sitio de releases del <a href="https://github.com/nymtech/nym/releases" target="_blank" class="hover:text-orange-400">github de nym</a> </p>
-            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+            <p class=" hover:text-orange-400"> 
         
-                <code>wget -c https://github.com/nymtech/nym/releases/download/nym-binaries-v2024.5-ragusa/nym-node
-                  </code>
+               <pre> <code>wget -c https://github.com/nymtech/nym/releases/download/nym-binaries-v2024.5-ragusa/nym-node </code></pre>
             </p>
             <h2 class="text-2xl font-semibold mt-4">Paso 4 </h2>
             <p class="text-withe mt-4" >Darmos permisos de ejecucuón al binario </p>
-            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        
-                <code>chmod u+x nym-node
-                  </code>
-            </p>
+<pre><code class=" hover:text-orange-400">chmod u+x nym-node </code></pre>
+          
 
 
 
             <h2 class="text-2xl font-semibold mt-4">Paso 5 </h2>
             <p class="text-withe mt-4" >Verificar la versión del nym-node </p>
 
-            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        <pre>
-                <code>./nym-node --version
-                  </code>
+         
+<pre> <code class=" hover:text-orange-400">./nym-node --version </code></pre>
            
-                </pre>
-                   </p>
+           
 
 
             <h2 class="text-2xl font-semibold mt-4">Paso 6 </h2>
@@ -187,8 +180,7 @@ sudo apt install ufw -y</code>
 sudo ufw enable
                     </code>
 
-                    <code> 
-# revisa el status del firewall
+                    <code> # revisa el status del firewall
 sudo ufw status</code>
                        
                     
@@ -238,12 +230,14 @@ ufw status
   for (let codeBlock of codeBlocks) {
     let wrapper = document.createElement("div");
     wrapper.style.position = "relative";
-      wrapper.style.top = "0";
+  
      
  
     let copyButton = document.createElement("button");
     copyButton.className = "copy-code";
     copyButton.innerHTML = copyButtonLabel;
+    copyButton.style.position = "absolute";
+      copyButton.style.top = "1";
 
     codeBlock.setAttribute("tabindex", "0");
     codeBlock.appendChild(copyButton);
@@ -271,19 +265,4 @@ ufw status
   }
 </script>
 
-<!-- <style>
-  .copy-code {
-  position: absolute;
-  top: 0;
-  right: 0;
-  background-color: #3730a3;
-  padding: 0.25rem 0.5rem;
-  font-size: 0.75rem;
-  line-height: 1rem;
-}
-
-.copy-code:hover {
-  background-color: #312e81;
-}
-
-</style> -->
+<!-- -->
