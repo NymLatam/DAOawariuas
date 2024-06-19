@@ -13,6 +13,7 @@ import Container from "./Container.astro"
 <li class="mt-4">Wallet con 101 Tokens</li></ul>
 <li class="mt-4">Terminal bash  </li></ul>
 <li class="mt-4">Internet  </li></ul>
+</div>
 
 <h2 class="text-2xl font-semibold mt-4">Paso 1 </h2>
             <p class="text-withe mt-4" >Abrir la wallet </p>
@@ -47,10 +48,12 @@ import Container from "./Container.astro"
             <p class="text-withe mt-4" >Verificar la versión del nym-node </p>
 
             <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        
+        <pre>
                 <code>./nym-node --version
                   </code>
-            </p>
+           
+                </pre>
+                   </p>
 
 
             <h2 class="text-2xl font-semibold mt-4">Paso 6 </h2>
@@ -235,7 +238,8 @@ ufw status
   for (let codeBlock of codeBlocks) {
     let wrapper = document.createElement("div");
     wrapper.style.position = "relative";
-  
+      wrapper.style.top = "0";
+     
  
     let copyButton = document.createElement("button");
     copyButton.className = "copy-code";
@@ -267,7 +271,7 @@ ufw status
   }
 </script>
 
-<style>
+<!-- <style>
   .copy-code {
   position: absolute;
   top: 0;
@@ -282,4 +286,4 @@ ufw status
   background-color: #312e81;
 }
 
-</style>
+</style> -->

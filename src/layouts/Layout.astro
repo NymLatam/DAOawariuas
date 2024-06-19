@@ -11,6 +11,8 @@ import AppHeader from "../components/AppHeader.astro";
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="generator" content={Astro.generator} />
         <meta name="description" content="DAOariwas es un esfuerzo colectivo de resistencia ante el capitalismo de vigilancia." />
+        <link rel="stylesheet" href="/styles/global.css">
+
         <title>DAOariwas</title>
 
         <link href="https://fonts.googleapis.com/css2?family=Urbanist:wght@400;500;600;700&display=swap" rel="stylesheet" />
@@ -36,4 +38,18 @@ import AppHeader from "../components/AppHeader.astro";
     body {
         margin: 0;
     }
+
+    .copy-code {
+  position: absolute;
+  top: 0;
+  right: 0;
+  background-color: #3730a3;
+  padding: 0.25rem 0.5rem;
+  font-size: 0.75rem;
+  line-height: 1rem;
+}
+
+.copy-code:hover {
+  background-color: #312e81;
+}
 </style>
