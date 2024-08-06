@@ -24,69 +24,83 @@ import Container from "./Container.astro"
 <br> 
 <i>Para usuarios de windows recmendamos usar wsl, terminal de unix en windows </i> </p>
 
-<p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        <pre><code> ssh root@192.168.0.x</code> </pre>
-</p>
-            <h2 class="text-2xl font-semibold mt-4">Paso 3 </h2>
-            <p class="text-withe mt-4" >Descargar el binario en el vps del sitio de releases del <a href="https://github.com/nymtech/nym/releases" target="_blank" class="hover:text-orange-400">github de nym</a> </p>
-            <p class=" hover:text-orange-400"> 
-        
-               <pre> <code>wget -c https://github.com/nymtech/nym/releases/download/nym-binaries-v2024.5-ragusa/nym-node </code></pre>
-            </p>
-            <h2 class="text-2xl font-semibold mt-4">Paso 4 </h2>
-            <p class="text-withe mt-4" >Darmos permisos de ejecucuón al binario </p>
-<pre><code class=" hover:text-orange-400">chmod u+x nym-node </code></pre>
-          
+<div class="relative">
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        <code> ssh root@192.168.0.x</code>
+ 
+    </pre>
+</div>
 
+<h2 class="text-2xl font-semibold mt-4">Paso 3 </h2>
+<p class="text-withe mt-4" >Descargar el binario en el vps del sitio de releases del <a href="https://github.com/nymtech/nym/releases" target="_blank" class="hover:text-orange-400">github de nym</a> </p>
 
+<div class="relative">
+    <pre class="hover:text-orange-400"> 
+        <code>wget -c https://github.com/nymtech/nym/releases/download/nym-binaries-v2024.5-ragusa/nym-node </code>
+      
+    </pre>
+</div>
 
-            <h2 class="text-2xl font-semibold mt-4">Paso 5 </h2>
-            <p class="text-withe mt-4" >Verificar la versión del nym-node </p>
+<h2 class="text-2xl font-semibold mt-4">Paso 4 </h2>
+<p class="text-withe mt-4" >Darmos permisos de ejecucuón al binario </p>
 
-         
-<pre> <code class=" hover:text-orange-400">./nym-node --version </code></pre>
-           
-           
+<div class="relative">
+    <pre class="hover:text-orange-400">
+        <code>chmod u+x nym-node </code>
+      
+    </pre>
+</div>
 
+<h2 class="text-2xl font-semibold mt-4">Paso 5 </h2>
+<p class="text-withe mt-4" >Verificar la versión del nym-node </p>
 
-            <h2 class="text-2xl font-semibold mt-4">Paso 6 </h2>
-            <p class="text-withe mt-4" >Iniciamos el nodo </p>
-            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        
-                <code> ./nym-node run --id testnode --init-only --mode mixnode --verloc-bind-address 0.0.0.0:1790 --public-ips "$(curl -4 https://ifconfig.me)"
-                  </code>
-            </p>
+<div class="relative">
+    <pre class="hover:text-orange-400">
+        <code>./nym-node --version </code>
+      
+    </pre>
+</div>
 
-            <p class="text-withe mt-4" >Debes de obteneter el Ident Key y el Sphinx Key para ponerlos en la wallet y hacer el bonding</p>
-           
-            <p class="text-gray-600 pr-20 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        <pre>
-                <code>
+<h2 class="text-2xl font-semibold mt-4">Paso 6 </h2>
+<p class="text-withe mt-4" >Iniciamos el nodo </p>
+
+<div class="relative">
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        <code> ./nym-node run --id testnode --init-only --mode mixnode --verloc-bind-address 0.0.0.0:1790 --public-ips "$(curl -4 https://ifconfig.me)"</code>
+    
+    </pre>
+</div>
+
+<p class="text-withe mt-4" >Debes de obteneter el Ident Key y el Sphinx Key para ponerlos en la wallet y hacer el bonding</p>
+
+<div class="relative">
+    <pre class="text-gray-600 pr-20 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        <code>
 Identity Key: DMkSeKp3Zq5....
 Sphinx Key: A6BFTQsuTWFuQ....
 Host: 65.108.110.214 (bind address: 65.108.110.214)
 Version: 1.1.17
 Mix Port: 1789, Verloc port: 1790, Http Port: 8000
-                  </code>
-                </pre>
-            </p>
-
+        </code>
+       
+    </pre>
+</div>
 
 <div>
-            <h2 class="text-2xl font-semibold mt-4">Paso 7 </h2>
-            <p class="text-withe mt-4" >Creamos el archivo de informacion del servicio</p>
+    <h2 class="text-2xl font-semibold mt-4">Paso 7 </h2>
+    <p class="text-withe mt-4" >Creamos el archivo de informacion del servicio</p>
 
-            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        
-                <code>nano /etc/systemd/system/nym-node.service
-                  </code>
-            </p>
+    <div class="relative">
+        <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+            <code>nano /etc/systemd/system/nym-node.service</code>
+      
+        </pre>
+    </div>
 
-            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        
-                <p class="mt-4">Ingresamos Esta iinformación</p>
-                <pre>
-                    <code>
+    <p class="mt-4">Ingresamos Esta iinformación</p>
+    <div class="relative">
+        <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400">
+            <code>
 [Unit]
 Description=Nym Node
 StartLimitInterval=350
@@ -102,112 +116,133 @@ RestartSec=30
                       
 [Install]
 WantedBy=multi-user.target
-                    </code>
-                  </pre>
-                  
-            </p>
-           
-          </div>
+            </code>
             
-            <h2 class="text-2xl font-semibold mt-4">Paso 8 </h2>
-            <p class="text-withe mt-4" >Habilitar el servicio y lo iniciamos </p>
-            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        </pre>
+    </div>
+</div>
+
+<h2 class="text-2xl font-semibold mt-4">Paso 8 </h2>
+<p class="text-withe mt-4" >Habilitar el servicio y lo iniciamos </p>
+
+<div class="relative">
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        <code>systemctl enable nym-node.service</code>
+      
+    </pre>
+</div>
+
+<div class="relative">
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        <code>systemctl daemon-reload</code>
+       
+    </pre>
+</div>
+
+<div class="relative">
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        <code>service nym-node start</code>
+       
+    </pre>
+</div>
+
+<h2 class="text-2xl font-semibold mt-4">Paso 9 </h2>
+<p class="text-withe mt-4" >Revisamos la informacion para el bonding </p>
+
+<div class="relative">
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        <code>./nym-node bonding-information --id testnode</code>
         
-                <code>systemctl enable nym-node.service
-                  </code>
-                </p>
-                <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-                  <code>systemctl daemon-reload
-                  </cod
-            </p>
+    </pre>
+</div>
 
+<h2 class="text-2xl font-semibold mt-4">Paso 10</h2>
+<p class="text-withe mt-4" >Hacer el bonding desde la wallet</p>
+<p class="text-withe mt-4" >Depositamos los datos que nos dio en la terminal</p>
+<img class="mt-4 justify-center" src="https://user-images.githubusercontent.com/17709296/235567658-975dacd4-738b-42fe-9f5d-d238985e72c4.png"  width="400">
 
-            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400">    <code>service nym-node start
-            </code></p>
+<h2 class="text-2xl font-semibold mt-4">Paso 10 </h2>
+<p class="text-withe mt-4" >Obtenemos la firma </p>
 
+<div class="relative">
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        <code> ./nym-node sign --id testnode --contract-msg.............</code>
+      
+    </pre>
+</div>
 
-     
-            <h2 class="text-2xl font-semibold mt-4">Paso 9 </h2>
-            <p class="text-withe mt-4" >Revisamos la informacion para el bonding </p>
-            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+<h2 class="text-2xl font-semibold mt-4">Paso 11 </h2>
+<p class="text-withe mt-4" >Agregamos la otra firma en la wallet </p>
+
+<div class="relative">
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        <code>  >>> The base58-encoded signature is:
+2GbKcZVKFdpi3sR9xoJWzw.......</code>
         
-                <code>./nym-node bonding-information --id testnode
-                  </code>
-                
+    </pre>
+</div>
 
-            </p>
-            <h2 class="text-2xl font-semibold mt-4">Paso 10</h2>
-            <p class="text-withe mt-4" >Hacer el bonding desde la wallet</p>
-            <p class="text-withe mt-4" >Depositamos los datos que nos dio en la terminal</p>
-            <img class="mt-4 justify-center" src="https://user-images.githubusercontent.com/17709296/235567658-975dacd4-738b-42fe-9f5d-d238985e72c4.png"  width="400">
+<h2 class="text-2xl font-semibold mt-4">Paso 13 </h2>
+<p class="text-withe mt-4" >Configura tu firewall </p>
 
-            <h2 class="text-2xl font-semibold mt-4">Paso 10 </h2>
-            <p class="text-withe mt-4" >Obtenemos la firma </p>
-            
-            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        
-              <pre>
-                <code> ./nym-node sign --id testnode --contract-msg.............
-                  </code>
-            </p></pre>
-
-            <h2 class="text-2xl font-semibold mt-4">Paso 11 </h2>
-            <p class="text-withe mt-4" >Agregamos la otra firma en la wallet </p>
-
-            <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        
-    <code>  >>> The base58-encoded signature is:
-2GbKcZVKFdpi3sR9xoJWzw.......
-                  </code>
-            </p>
-           
-
-            <h2 class="text-2xl font-semibold mt-4">Paso 13 </h2>
-            <p class="text-withe mt-4" >Configura tu firewall </p>
-
-            <pre>
-                <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
-        
-                    <code> 
- # revisa si tienes instalado  ufw 
+<div class="relative">
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        <code> 
+# revisa si tienes instalado  ufw 
 ufw version
-                    </code>
-                    <code> 
+        </code>
+        
+    </pre>
+</div>
+
+<div class="relative">
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        <code> 
 # si no está instalado, instalalo con
-sudo apt install ufw -y</code>
-                       <code>  
+sudo apt install ufw -y
+        </code>
+        
+    </pre>
+</div>
+
+<div class="relative">
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        <code> 
 # habilita ufw
 sudo ufw enable
-                    </code>
+        </code>
+     
+    </pre>
+</div>
 
-                    <code> # revisa el status del firewall
-sudo ufw status</code>
-                       
-                    
-                    
-                </p>
-            </pre>
-
-            <h2 class="text-2xl font-semibold mt-4">Paso 14 </h2>
-            <p class="text-withe mt-4" >Habilitar los puertos 1789, 1790 8000, 22, 80, 443</p>
-    <p class="text-gray-600 dark:text-gray-300 text-1xl  rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+<div class="relative">
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        <code> 
+# revisa el status del firewall
+sudo ufw status
+        </code>
         
-        <pre> 
+    </pre>
+</div>
+
+<h2 class="text-2xl font-semibold mt-4">Paso 14 </h2>
+<p class="text-withe mt-4" >Habilitar los puertos 1789, 1790 8000, 22, 80, 443</p>
+
+<div class="relative">
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
         <code> 
 ufw allow 1789
 ufw allow 1790
 ufw allow 22,443,1789,1790,8080/tcp
 ufw allow 8080
-  #Revisa tu Firewal
+#Revisa tu Firewal
 ufw status    
         </code>
-        
-</pre>  
-</p>
+       
+    </pre>
+</div>
 
-          
-          <p class="text-withe mt-4" >Busca tu nodo en el  <span><a class=" hover:bg-primary " href="https://nym.explorers.guru/" target="_blank">Explorer</a></span> usando tu Identy Key </p>
-         
+<p class="text-withe mt-4" >Busca tu nodo en el  <span><a class=" hover:bg-primary " href="https://nym.explorers.guru/" target="_blank">Explorer</a></span> usando tu Identy Key </p>
 
 <h1 class="text-3xl mt-8 text-center"> Felicidades 🎉🎉</h1>
 <div class=""> 
@@ -216,12 +251,8 @@ ufw status
 </div>
 </div>
 
-
-
-
 </div>
 </Container>
-
 
 <script>
   let copyButtonLabel = "🍞";
@@ -231,13 +262,12 @@ ufw status
     let wrapper = document.createElement("div");
     wrapper.style.position = "relative";
   
-     
- 
     let copyButton = document.createElement("button");
     copyButton.className = "copy-code";
     copyButton.innerHTML = copyButtonLabel;
     copyButton.style.position = "absolute";
-      copyButton.style.top = "1";
+    copyButton.style.top = "1";
+    copyButton.style.right = "1";
 
     codeBlock.setAttribute("tabindex", "0");
     codeBlock.appendChild(copyButton);
@@ -264,5 +294,3 @@ ufw status
     }, 700);
   }
 </script>
-
-<!-- -->
