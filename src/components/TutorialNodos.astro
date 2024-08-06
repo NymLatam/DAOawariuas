@@ -25,7 +25,7 @@ import Container from "./Container.astro"
 <i>Para usuarios de windows recmendamos usar wsl, terminal de unix en windows </i> </p>
 
 <div class="relative">
-    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400 overflow-x-auto"> 
         <code> ssh root@192.168.0.x</code>
  
     </pre>
@@ -35,7 +35,7 @@ import Container from "./Container.astro"
 <p class="text-withe mt-4" >Descargar el binario en el vps del sitio de releases del <a href="https://github.com/nymtech/nym/releases" target="_blank" class="hover:text-orange-400">github de nym</a> </p>
 
 <div class="relative">
-    <pre class="hover:text-orange-400"> 
+    <pre class="hover:text-orange-400 overflow-x-auto"> 
         <code>wget -c https://github.com/nymtech/nym/releases/download/nym-binaries-v2024.5-ragusa/nym-node </code>
       
     </pre>
@@ -45,7 +45,7 @@ import Container from "./Container.astro"
 <p class="text-withe mt-4" >Darmos permisos de ejecucuón al binario </p>
 
 <div class="relative">
-    <pre class="hover:text-orange-400">
+    <pre class="hover:text-orange-400 overflow-x-auto">
         <code>chmod u+x nym-node </code>
       
     </pre>
@@ -55,7 +55,7 @@ import Container from "./Container.astro"
 <p class="text-withe mt-4" >Verificar la versión del nym-node </p>
 
 <div class="relative">
-    <pre class="hover:text-orange-400">
+    <pre class="hover:text-orange-400 overflow-x-auto">
         <code>./nym-node --version </code>
       
     </pre>
@@ -65,7 +65,7 @@ import Container from "./Container.astro"
 <p class="text-withe mt-4" >Iniciamos el nodo </p>
 
 <div class="relative">
-    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400 overflow-x-auto"> 
         <code> ./nym-node run --id testnode --init-only --mode mixnode --verloc-bind-address 0.0.0.0:1790 --public-ips "$(curl -4 https://ifconfig.me)"</code>
     
     </pre>
@@ -74,7 +74,7 @@ import Container from "./Container.astro"
 <p class="text-withe mt-4" >Debes de obteneter el Ident Key y el Sphinx Key para ponerlos en la wallet y hacer el bonding</p>
 
 <div class="relative">
-    <pre class="text-gray-600 pr-20 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+    <pre class="text-gray-600 pr-20 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400 overflow-x-auto"> 
         <code>
 Identity Key: DMkSeKp3Zq5....
 Sphinx Key: A6BFTQsuTWFuQ....
@@ -91,7 +91,7 @@ Mix Port: 1789, Verloc port: 1790, Http Port: 8000
     <p class="text-withe mt-4" >Creamos el archivo de informacion del servicio</p>
 
     <div class="relative">
-        <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+        <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400 overflow-x-auto"> 
             <code>nano /etc/systemd/system/nym-node.service</code>
       
         </pre>
@@ -99,7 +99,7 @@ Mix Port: 1789, Verloc port: 1790, Http Port: 8000
 
     <p class="mt-4">Ingresamos Esta iinformación</p>
     <div class="relative">
-        <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400">
+        <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400 overflow-x-auto">
             <code>
 [Unit]
 Description=Nym Node
@@ -126,21 +126,21 @@ WantedBy=multi-user.target
 <p class="text-withe mt-4" >Habilitar el servicio y lo iniciamos </p>
 
 <div class="relative">
-    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400 overflow-x-auto"> 
         <code>systemctl enable nym-node.service</code>
       
     </pre>
 </div>
 
 <div class="relative">
-    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400 overflow-x-auto"> 
         <code>systemctl daemon-reload</code>
        
     </pre>
 </div>
 
 <div class="relative">
-    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400 overflow-x-auto"> 
         <code>service nym-node start</code>
        
     </pre>
@@ -150,7 +150,7 @@ WantedBy=multi-user.target
 <p class="text-withe mt-4" >Revisamos la informacion para el bonding </p>
 
 <div class="relative">
-    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400 overflow-x-auto"> 
         <code>./nym-node bonding-information --id testnode</code>
         
     </pre>
@@ -165,7 +165,7 @@ WantedBy=multi-user.target
 <p class="text-withe mt-4" >Obtenemos la firma </p>
 
 <div class="relative">
-    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400 overflow-x-auto"> 
         <code> ./nym-node sign --id testnode --contract-msg.............</code>
       
     </pre>
@@ -175,7 +175,7 @@ WantedBy=multi-user.target
 <p class="text-withe mt-4" >Agregamos la otra firma en la wallet </p>
 
 <div class="relative">
-    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400 overflow-x-auto"> 
         <code>  >>> The base58-encoded signature is:
 2GbKcZVKFdpi3sR9xoJWzw.......</code>
         
@@ -186,7 +186,7 @@ WantedBy=multi-user.target
 <p class="text-withe mt-4" >Configura tu firewall </p>
 
 <div class="relative">
-    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400 overflow-x-auto"> 
         <code> 
 # revisa si tienes instalado  ufw 
 ufw version
@@ -196,7 +196,7 @@ ufw version
 </div>
 
 <div class="relative">
-    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400 overflow-x-auto"> 
         <code> 
 # si no está instalado, instalalo con
 sudo apt install ufw -y
@@ -206,7 +206,7 @@ sudo apt install ufw -y
 </div>
 
 <div class="relative">
-    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400 overflow-x-auto"> 
         <code> 
 # habilita ufw
 sudo ufw enable
@@ -216,7 +216,7 @@ sudo ufw enable
 </div>
 
 <div class="relative">
-    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400 overflow-x-auto"> 
         <code> 
 # revisa el status del firewall
 sudo ufw status
@@ -229,7 +229,7 @@ sudo ufw status
 <p class="text-withe mt-4" >Habilitar los puertos 1789, 1790 8000, 22, 80, 443</p>
 
 <div class="relative">
-    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400"> 
+    <pre class="text-gray-600 dark:text-gray-300 text-1xl rounded-lg shadow-lg bg-gray-900 p-4 hover:text-orange-400 overflow-x-auto"> 
         <code> 
 ufw allow 1789
 ufw allow 1790
